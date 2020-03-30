@@ -6,6 +6,8 @@ source oe-init-build-env
 bitbake $1 > /home/deploy/yocto/output/nighty/$1/logs/build_$now.log
 cp /home/deploy/yocto/input/openembedded-core/build/tmp-glibc/deploy/images/solidrun-imx6/$1-solidrun-imx6.wic.gz   /home/deploy/yocto/output/nighty/$1/image/
 cd  /home/deploy/yocto/output/nighty/$1/image
+gunzip -c $1-solidrun-imx6.wic.gz > $1.bin
+rm /home/deploy/yocto/output/nighty/$1/image/$1-solidrun-imx6.wic.gz
 git pull origin nighty
 git checkout nighty
 git add .

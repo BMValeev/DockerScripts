@@ -7,6 +7,8 @@ echo "Build image"
 bitbake image-camera > /home/deploy/yocto/output/nighty/image-camera/logs/build_$now.log
 cp /home/deploy/yocto/input/openembedded-core/build/tmp-glibc/deploy/images/solidrun-imx6/image-camera-solidrun-imx6.wic.gz   /home/deploy/yocto/output/nighty/image-camera/image/
 cd  /home/deploy/yocto/output/nighty/image-camera/image
+gunzip -c image-camera-solidrun-imx6.wic.gz > image-camera.bin
+rm /home/deploy/yocto/output/nighty/image-camera/image/image-camera-solidrun-imx6.wic.gz
 echo "Push to gitlab"
 git pull origin nighty > /dev/null
 git checkout nighty > /dev/null
